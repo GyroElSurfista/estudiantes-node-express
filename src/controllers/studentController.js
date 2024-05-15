@@ -30,17 +30,19 @@ studentController.getOneStudent = async(req, res) => {
     }
 };
 
-// studentController.postAStudent() = async(req, res) => {
-//     try{
-        
-//         const newStudentData = req.body
+studentController.postAStudent = async(req, res) => {
 
-//         await studentS.postAStudent(newStudentData)
+    const { stName, stLastname, stCode, stEmail, stPass } = req.body;
+    
+    try{
+        const newStudentData = {stName, stLastname, stCode, stEmail, stPass};
+        const studentS = new StudentService();
+        const newStudent = await studentS.postAStudent(newStudentData);
+        res.status(201).json(newStudent);
 
-
-//     } catch (error){
-//         console.error('Error xd', error)
-//     } 
-// }
+    } catch (error){
+        console.error('Error xd', error)
+    } 
+}
 
 module.exports = studentController;

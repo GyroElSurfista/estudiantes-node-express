@@ -7,6 +7,9 @@ RUN npm ci
 
 COPY . .
 
+RUN apt install ca-certificates -y
+
+
 EXPOSE ${NODE_PORT}
 
 CMD ["npm", "start"]

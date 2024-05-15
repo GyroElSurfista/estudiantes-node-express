@@ -3,59 +3,62 @@ const pg = require('pg');
 
 dotenv.config()
 
-const client = new pg.Client({
-    user: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DATABASE,
-    host: process.env.POSTGRES_HOST,
-    port: process.env.POSTGRES_PORT,
-  });
+// const client = new pg.Client({
+//     user: process.env.POSTGRES_USER,
+//     password: process.env.POSTGRES_PASSWORD,
+//     database: process.env.POSTGRES_DB,
+//     host: process.env.POSTGRES_HOST,
+//     port: process.env.POSTGRES_PORT,
+//   });
+
+// if (!client._connected) {
+//     client.connect((err) => {
+//     if (err) {
+//         console.error('Error en la conexión a PostgreSQL', err);
+//         return;
+//     }
+//     console.log('Conexión exitosa a PostgreSQL');
+//     });
+// }
 
 class StudentService{
 
-    constructor(){
-        if (!client._connected) {
-            client.connect((err) => {
-                if (err) {
-                  console.error('Error en la conexión a PostgreSQL', err);
-                  return;
-                }
-                console.log('Conexión exitosa a PostgreSQL');
-              });
-        }
+    // constructor(client){
+    //     this.client = client;  
+    // }
+
+    // async getAllStudents(){
+
+    //     try{
+    //         const result = await client.query('SELECT * FROM student');
+    //         const students = result.rows;
+    //         return students;
+
+    //     }catch (err){
+    //         throw err;
+    //     }
         
-    }
+    // }
 
-    async getAllStudents(){
+    // async getAStudent(studentId){
+    //     try{
+    //         const result = await client.query('SELECT * FROM student WHERE student.studentId = $1', [studentId]);
+    //         const student = result.rows;
+    //         return student;
 
-        try{
-            const result = await client.query('SELECT * FROM "Student"');
-            const students = result.rows;
-            return students;
+    //     }catch (err){
+    //         throw err;
+    //     }
 
-        }catch (err){
-            throw err;
-        }
-        
-    }
-
-    async getAStudent(studentId){
-        try{
-            const result = await client.query('SELECT * FROM "Student" WHERE "Student"."studentId" = $1', [studentId]);
-            const student = result.rows;
-            return student;
-
-        }catch (err){
-            throw err;
-        }
-
-    }
+    // }
 
     // async postAStudent(newStudentData){
 
     //     try{
-    //         const newStudent = 
-
+    //         const query = "INSERT INTO student(studentName, studentLastname, studentCode, studentEmail, studentPassword) VALUES ($1,$2,$3,$4,$5)";
+    //         const values = [newStudentData.stName, newStudentData.stLastname, newStudentData.stCode, newStudentData.stEmail, newStudentData.stPass];
+    //         const result = await client.query(query, values);
+    //         return result.rows[0];
     //     }catch (err){
     //         throw err;
     //     }
