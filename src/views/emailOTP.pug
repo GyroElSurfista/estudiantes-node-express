@@ -1,8 +1,34 @@
 doctype html
 html(lang='en')
- head
-   title Código de Verificación OTP
- body
-   p ¡Hola #{name}! Este es tu código OTP para verificar tu correo electrónico: 
-   h2 #{otp} 
-   p El código OTP será válido durante #{time} #{unit} así que apresúrate.
+  head
+    title Código de Verificación OTP
+    style.
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(to right, #ff7e5f, #feb47b);
+        font-family: Arial, sans-serif;
+        color: #333;
+      }
+      .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      h2 {
+        color: #ff6347;
+        margin: 20px 0;
+      }
+      p {
+        margin: 10px 0;
+      }
+  body
+    .container
+      p ¡Hola #{name}! Este es tu código OTP para verificar tu correo electrónico:
+      h2 #{otp}
+      p El código OTP será válido durante #{time} #{unit} así que apresúrate.
