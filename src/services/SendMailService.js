@@ -1,4 +1,6 @@
 const nodemailer = require("nodemailer");
+const  pug = require('pug');
+const path = require('path');
 
 
 class SendMailService{
@@ -16,13 +18,27 @@ class SendMailService{
         });
     }
 
-    async sendMail(mailTo){
+    async sendOTPMail(mailTo, userName, otpCode, time, unit){
+      
+        const templatesDir = process.env.TEMPLATES_DIR;
+        const compiledMail = pug.compileFile(path.join(__dirname, '/../views/emailOTP.pug'));
+      
+        // const emailHtml = 
+
+        console.log("Sending OTP to:", mailTo);
+        // console.log(__dirname);
+        // console.log(path.join(__dirname, '/../views/emailOTP.pug'));
+
         const info = await this.transporter.sendMail({
-          from: '"Jairo👻" <jairotrabaja123@gmail.com>"',
+          from: '<jairotrabaja123@gmail.com>',
             to: `${mailTo}`, // list of receivers
-            subject: "Hello ✔", // Subject line
-            text: "Hello world?", // plain text body
-            html: "<b>Hello world?</b>", // html body
+            subject: "Código OTP", // Subject line
+            html: compiledMail({
+                name: userName,
+                otp: otpCode,
+                time: time,
+                unit: unit
+              }), // html body
           });
 
         return info;

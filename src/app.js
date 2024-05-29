@@ -2,11 +2,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const path = require('path');
+
 const port = process.env.PORT || 3000; // Puerto para el servidor
 
 // Middleware para procesar datos JSON
 app.use(express.json());
 app.use(bodyParser.json());
+app.set('views', path.join(__dirname, 'src', 'views'));
+app.set('view engine', 'pug');
 
 // Ruta de inicio
 app.get('/', (req, res) => {
