@@ -19,14 +19,18 @@ class SendMailService{
     }
 
     async sendOTPMail(mailTo, userName, otpCode, time, unit){
-
+      
         const templatesDir = process.env.TEMPLATES_DIR;
-        const compiledMail = pug.compileFile(path.join(templatesDir, 'emailOTP.pug'));
-
+        const compiledMail = pug.compileFile(path.join(__dirname, '/../views/emailOTP.pug'));
+      
         // const emailHtml = 
 
+        console.log("Sending OTP to:", mailTo);
+        // console.log(__dirname);
+        // console.log(path.join(__dirname, '/../views/emailOTP.pug'));
+
         const info = await this.transporter.sendMail({
-          from: '<jairotrabaja123@gmail.com>"',
+          from: '<jairotrabaja123@gmail.com>',
             to: `${mailTo}`, // list of receivers
             subject: "Código OTP", // Subject line
             html: compiledMail({
